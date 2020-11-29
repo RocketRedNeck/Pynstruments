@@ -1,0 +1,50 @@
+
+[dmms                 ] id0: keysight::34470A::None::None::None: NOT FOUND
+[dmms                 ] id1: keysight::34470A::None::None::mock_devices.yaml@sim: Found
+[oscilloscopes        ] id0: tektronix::MSO58::None::None::None: NOT FOUND
+[oscilloscopes        ] id1: rigol::DS1000Z::None::None::None: Found
+[oscilloscopes        ] id2: tektronix::MSO58::MOCK::None::mock_devices.yaml@sim: Found
+[power_supplies       ] id0: rohde::HMC8042::042596902::None::None: NOT FOUND
+[power_supplies       ] id1: rohde::HMC8042::041412280::None::None: NOT FOUND
+[power_supplies       ] id2: rohde::NGM202::None::None::None: NOT FOUND
+[power_supplies       ] id3: siglent::SPD3303X::None::None::None: Found
+[power_supplies       ] id4: rohde::HMC8042::MOCK0::None::mock_devices.yaml@sim: Found
+[power_supplies       ] id5: rohde::HMC8042::MOCK1::None::mock_devices.yaml@sim: Found
+[power_supplies       ] id6: rohde::NGM202::None::None::mock_devices.yaml@sim: Found
+OUTPUT = 9.01
+
+# Run an oscope
+
+............................
+Measurements.V_MAX           : [2.96] 
+Measurements.V_MIN           : [-0.08] 
+Measurements.V_PEAK2PEAK     : [3.04] 
+Measurements.V_TOP           : [2.883577] 
+Measurements.V_UPPER         : [2.587674] 
+Measurements.V_MIDDLE        : [1.414634] 
+Measurements.V_LOWER         : [0.2345364] 
+Measurements.V_BASE          : [-0.05951233] 
+Measurements.V_AMPLITUDE     : [2.9393] 
+Measurements.V_AVG           : [1.411271] 
+Measurements.V_RMS           : [2.037373] 
+Measurements.TIME_V_MAX      : [-0.001688] 
+Measurements.TIME_V_MIN      : [-0.001496] 
+Measurements.OVERSHOOT       : [0.02568209] 
+Measurements.PRESHOOT        : [0.006906498] 
+Measurements.AREA            : [0.0033828] 
+Measurements.PERIOD_AREA     : [0.00141448] 
+Measurements.PERIOD          : [0.001] 
+Measurements.FREQUENCY       : [999.9999] 
+Measurements.RISE_TIME       : [nan] 
+Measurements.FALL_TIME       : [nan] 
+Measurements.POSITIVE_WIDTH  : [0.0005] 
+Measurements.NEGATIVE_WIDTH  : [0.0005] 
+Measurements.POSITIVE_DUTY   : [0.5] 
+Measurements.NEGATIVE_DUTY   : [0.5] 
+Measurements.POSITIVE_SLEW   : [392563.6] 
+Measurements.NEGATIVE_SLEW   : [-392737.1] 
+Measurements.VARIANCE        : [2.154543] 
+.....[WARNING] : While attempting :WAVeform:DATA?...
+Backend Error VI_ERROR_TMO (-1073807339): Timeout expired before operation completed. issuing query :WAVeform:DATA?
+
+LENGTH = 524288

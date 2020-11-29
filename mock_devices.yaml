@@ -1,0 +1,636 @@
+spec: "1.0"
+devices:
+  device 1:
+    eom:
+      ASRL INSTR:
+        q: "\r\n"
+        r: "\n"
+      USB INSTR:
+        q: "\n"
+        r: "\n"
+      TCPIP INSTR:
+        q: "\n"
+        r: "\n"
+      TCPIP SOCKET:
+        q: "\n"
+        r: "\n"
+      GPIB INSTR:
+        q: "\n"
+        r: "\n"
+    error:
+      status_register:
+        - q: "*ESR?"
+          command_error: 32
+          query_error: 4
+    dialogues:
+      - q: "*IDN?"
+        r: "TEKTRONIX,MSO58,MOCK,VERSION_MOCK"
+      - q: "*OPC?"
+        r: "1"
+      - q: ":TRIGger:STATE?"
+        r: "TRIGGER"
+      - q: ":MEASUrement:IMMed:VALue?"
+        r: "8.675309"
+      - q: ":CH1:SCALe?"
+        r: "1.0"
+      - q: ":CH2:SCALe?"
+        r: "1.0"
+      - q: ":WFMOutpre:ENCdg?"
+        r: "MOCK_VALUE"
+      - q: ":WFMOutpre:BYT_Nr?"
+        r: "MOCK_VALUE"
+      - q: ":WFMOutpre:BN_Fmt?"
+        r: "MOCK_VALUE"
+      - q: ":WFMOutpre:BYT_Or?"
+        r: "MOCK_VALUE"
+      - q: ":WFMOutpre?"
+        r: "2;16;BINARY;RI;MSB;\"Ch1,DC coupling, 200.0mV/div, 10.00us/div, 1250 points, Sample mode\";MOCK;10;Y;\"s\";80.0000E-9;0.000200;625;0.0;\"V\";31.2500E-6;0.0000;0.0000;3"
+      - q: ":CURVe?"
+        r: "#22000000000000000000000"
+    properties:
+      header:
+        default: 0
+        setter:
+          q: ":HEADer {0}"
+        specs:
+          valid: [0, 1]
+          type: int
+      channel1state:
+        default: "OFF"
+        getter:
+          q: ":DISplay:WAVEView1:CH1:STATE?"
+          r: "{0}"
+        setter:
+          q: ":DISplay:WAVEView1:CH1:STATE {0}"
+        specs:
+          valid: ["OFF", "ON"]
+          type: str
+      channel2state:
+        default: "OFF"
+        getter:
+          q: ":DISplay:WAVEView1:CH2:STATE?"
+          r: "{0}"
+        setter:
+          q: ":DISplay:WAVEView1:CH2:STATE {0}"
+        specs:
+          valid: ["OFF", "ON"]
+          type: str
+      channel3state:
+        default: "OFF"
+        getter:
+          q: ":DISplay:WAVEView1:CH3:STATE?"
+          r: "{0}"
+        setter:
+          q: ":DISplay:WAVEView1:CH3:STATE {0}"
+        specs:
+          valid: ["OFF", "ON"]
+          type: str
+      channel4state:
+        default: "OFF"
+        getter:
+          q: ":DISplay:WAVEView1:CH4:STATE?"
+          r: "{0}"
+        setter:
+          q: ":DISplay:WAVEView1:CH4:STATE {0}"
+        specs:
+          valid: ["OFF", "ON"]
+          type: str
+      channel5state:
+        default: "OFF"
+        getter:
+          q: ":DISplay:WAVEView1:CH5:STATE?"
+          r: "{0}"
+        setter:
+          q: ":DISplay:WAVEView1:CH5:STATE {0}"
+        specs:
+          valid: ["OFF", "ON"]
+          type: str
+      channel6state:
+        default: "OFF"
+        getter:
+          q: ":DISplay:WAVEView1:CH6:STATE?"
+          r: "{0}"
+        setter:
+          q: ":DISplay:WAVEView1:CH6:STATE {0}"
+        specs:
+          valid: ["OFF", "ON"]
+          type: str
+      channel7state:
+        default: "OFF"
+        getter:
+          q: ":DISplay:WAVEView1:CH7:STATE?"
+          r: "{0}"
+        setter:
+          q: ":DISplay:WAVEView1:CH7:STATE {0}"
+        specs:
+          valid: ["OFF", "ON"]
+          type: str
+      channel8state:
+        default: "OFF"
+        getter:
+          q: ":DISplay:WAVEView1:CH8:STATE?"
+          r: "{0}"
+        setter:
+          q: ":DISplay:WAVEView1:CH8:STATE {0}"
+        specs:
+          valid: ["OFF", "ON"]
+          type: str
+      datasource:
+        default: "CH1"
+        getter:
+          q: ":DATa:SOUrce?"
+          r: "{0}"
+        setter:
+          q: ":DATa:SOUrce {0}"
+        specs:
+          valid: ["CH1", "CH2", "CH3", "CH4", "CH5", "CH6", "CH7", "CH8", "MATH1"]
+          type: str
+      encoding:
+        default: "RIBinary"
+        getter:
+          q: ":DATa:ENCdg?"
+          r: "{0}"
+        setter:
+          q: ":DATa:ENCdg {0}"
+        specs:
+          valid: ["RIBinary", "SRIBinary"]
+          type: str
+      probe1scale:
+        default: 10
+        getter:
+          q: ":CH1:PROBe:SET?"
+          r: "{:f}"
+        setter:
+          q: ":CH1:PROBe:SET \"ATTENUATION {0}X\""
+        specs:
+          min: 0
+          max: 10
+          type: float
+      probe2scale:
+        default: 10
+        getter:
+          q: ":CH2:PROBe:SET?"
+          r: "{:f}"
+        setter:
+          q: ":CH2:PROBe:SET \"ATTENUATION {0}X\""
+        specs:
+          min: 0
+          max: 10
+          type: float
+      hscale:
+        default: 0.2e-6
+        getter:
+          q: ":HORizontal:MODE:SCAle?"
+          r: "{:f}"
+        setter:
+          q: ":HORizontal:MODE:SCAle {:f}"
+        specs:
+          min: 0
+          max: 10
+          type: float
+  device 2:
+    eom:
+      ASRL INSTR:
+        q: "\r\n"
+        r: "\n"
+      USB INSTR:
+        q: "\n"
+        r: "\n"
+      TCPIP INSTR:
+        q: "\n"
+        r: "\n"
+      GPIB INSTR:
+        q: "\n"
+        r: "\n"
+    dialogues:
+      - q: "*IDN?"
+        r: "AGILENT,AT34470A,MOCK,VERSION_MOCK"
+      - q: "*OPC?"
+        r: "1"
+      - q: "CONFigure?"
+        r: "VOLT +1.00000000E+01,+3.00000000E-06"
+    error:
+      status_register:
+        - q: "*ESR?"
+          command_error: 32
+          query_error: 4
+    properties:
+      rstvalue:
+        default: 0
+        setter:
+          q: "*RST"
+      readvalue:
+        default: 0.5
+        getter:
+          q: "READ?"
+          r: "{:f}"
+        setter:
+          q: "READ! {:f}"
+          r: OK
+        specs:
+          min: 0
+          max: 35
+          type: float
+  device 3:
+    eom:
+      ASRL INSTR:
+        q: "\r\n"
+        r: "\n"
+      USB INSTR:
+        q: "\n"
+        r: "\n"
+      TCPIP INSTR:
+        q: "\n"
+        r: "\n"
+      GPIB INSTR:
+        q: "\n"
+        r: "\n"
+    dialogues:
+      - q: "*IDN?"
+        r: "Rhode,NGM202,MOCK,VERSION_MOCK"
+      - q: "*OPC?"
+        r: "1"
+    error:
+      status_register:
+        - q: "*ESR?"
+          command_error: 32
+          query_error: 4
+    properties:
+      voltage:
+        default: 1.0
+        getter:
+          q: "VOLTage?"
+          r: "{:+.2E}"
+        setter:
+          q: "VOLTage {:.2f}"
+        specs:
+          min: 0
+          max: 20.05
+          type: float
+      measured_voltage:
+        default: 1.0
+        getter:
+          q: "MEASure:VOLTage?"
+          r: "{:+.2E}"
+        specs:
+          min: 0
+          max: 20.05
+          type: float
+      current:
+        default: 1.0
+        getter:
+          q: "CURRent?"
+          r: "{:+.2E}"
+        setter:
+          q: "CURRent {:.2f}"
+        specs:
+          min: 0.01
+          max: 6.01
+          type: float
+      measured_current:
+        default: 0.11
+        getter:
+          q: "MEASure:CURRent?"
+          r: "{:+.8E}"
+        specs:
+          min: 0.01
+          max: 6.01
+          type: float
+      measured_power:
+        default: 102.3
+        getter:
+          q: "MEASure:POWer?"
+          r: "{:+.8E}"
+        specs:
+          min: 0.0
+          max: 120.0
+          type: float
+      read_only:
+        default: 1
+        getter:
+          q: "INST?"
+          r: "{:s}"
+      output_enabled:
+        default: 0
+        getter:
+          q: "OUTP?"
+          r: "{:d}"
+        setter:
+          q: "OUTP {:d}"
+  device 4:
+    eom:
+      ASRL INSTR:
+        q: "\r\n"
+        r: "\n"
+      USB INSTR:
+        q: "\n"
+        r: "\n"
+      TCPIP INSTR:
+        q: "\n"
+        r: "\n"
+      GPIB INSTR:
+        q: "\n"
+        r: "\n"
+    dialogues:
+      - q: "*IDN?"
+        r: "Rhode,HMC8042,MOCK,VERSION_MOCK"
+      - q: "*OPC?"
+        r: "1"
+    error:
+      error_queue:
+        - q: ':SYST:ERR?'
+          default: '0, No Error'
+          command_error: '1, Command error'
+    properties:
+      voltage:
+        default: 1.0
+        getter:
+          q: "VOLTage?"
+          r: "{:+.2E}"
+        setter:
+          q: "VOLTage {:.2f}"
+        specs:
+          min: 0
+          max: 20.05
+          type: float
+      measured_voltage:
+        default: 1.0
+        getter:
+          q: "MEASure:VOLTage?"
+          r: "{:+.2E}"
+        specs:
+          min: 0
+          max: 20.05
+          type: float
+      current:
+        default: 1.0
+        getter:
+          q: "CURRent?"
+          r: "{:+.2E}"
+        setter:
+          q: "CURRent {:.2f}"
+        specs:
+          min: 0.01
+          max: 6.01
+          type: float
+      measured_current:
+        default: 0.11
+        getter:
+          q: "MEASure:CURRent?"
+          r: "{:+.2E}"
+        setter:
+          q: "MEASure:CURRent! {:.2f}"
+        specs:
+          min: 0.01
+          max: 6.01
+          type: float
+      measured_power:
+        default: 102.3
+        getter:
+          q: "MEASure:POWer?"
+          r: "{:+.8E}"
+        specs:
+          min: 0.0
+          max: 120.0
+          type: float
+      read_only:
+        default: 1
+        getter:
+          q: "INST?"
+          r: "{:s}"
+      output_enabled:
+        default: 0
+        getter:
+          q: "OUTP?"
+          r: "{:d}"
+        setter:
+          q: "OUTP {:d}"        
+  device 5:
+    eom:
+      USB INSTR:
+        q: "\n"
+        r: "\n"
+  device 6:
+    eom:
+      ASRL INSTR:
+        q: "\r\n"
+        r: "\n"
+      USB INSTR:
+        q: "\n"
+        r: "\n"
+      TCPIP INSTR:
+        q: "\n"
+        r: "\n"
+      GPIB INSTR:
+        q: "\n"
+        r: "\n"
+    dialogues:
+      - q: "*IDN?"
+        r: "Rhode,HMC8042,MOCK0,VERSION_MOCK"
+      - q: "*OPC?"
+        r: "1"
+    error:
+      error_queue:
+        - q: ':SYST:ERR?'
+          default: '0, No Error'
+          command_error: '1, Command error'
+    properties:
+      voltage:
+        default: 1.0
+        getter:
+          q: "VOLTage?"
+          r: "{:+.2E}"
+        setter:
+          q: "VOLTage {:.2f}"
+        specs:
+          min: 0
+          max: 20.05
+          type: float
+      measured_voltage:
+        default: 1.0
+        getter:
+          q: "MEASure:VOLTage?"
+          r: "{:+.2E}"
+        specs:
+          min: 0
+          max: 20.05
+          type: float
+      current:
+        default: 1.0
+        getter:
+          q: "CURRent?"
+          r: "{:+.2E}"
+        setter:
+          q: "CURRent {:.2f}"
+        specs:
+          min: 0.01
+          max: 6.01
+          type: float
+      measured_current:
+        default: 0.11
+        getter:
+          q: "MEASure:CURRent?"
+          r: "{:+.2E}"
+        setter:
+          q: "MEASure:CURRent! {:.2f}"
+        specs:
+          min: 0.01
+          max: 6.01
+          type: float
+      measured_power:
+        default: 102.3
+        getter:
+          q: "MEASure:POWer?"
+          r: "{:+.8E}"
+        specs:
+          min: 0.0
+          max: 120.0
+          type: float
+      read_only:
+        default: 1
+        getter:
+          q: "INST?"
+          r: "{:s}"
+      output_enabled:
+        default: 0
+        getter:
+          q: "OUTP?"
+          r: "{:d}"
+        setter:
+          q: "OUTP {:d}"  
+  device 7:
+    eom:
+      ASRL INSTR:
+        q: "\r\n"
+        r: "\n"
+      USB INSTR:
+        q: "\n"
+        r: "\n"
+      TCPIP INSTR:
+        q: "\n"
+        r: "\n"
+      GPIB INSTR:
+        q: "\n"
+        r: "\n"
+    dialogues:
+      - q: "*IDN?"
+        r: "Rhode,HMC8042,MOCK1,VERSION_MOCK"
+      - q: "*OPC?"
+        r: "1"
+    error:
+      error_queue:
+        - q: ':SYST:ERR?'
+          default: '0, No Error'
+          command_error: '1, Command error'
+    properties:
+      voltage:
+        default: 1.0
+        getter:
+          q: "VOLTage?"
+          r: "{:+.2E}"
+        setter:
+          q: "VOLTage {:.2f}"
+        specs:
+          min: 0
+          max: 20.05
+          type: float
+      measured_voltage:
+        default: 1.0
+        getter:
+          q: "MEASure:VOLTage?"
+          r: "{:+.2E}"
+        specs:
+          min: 0
+          max: 20.05
+          type: float
+      current:
+        default: 1.0
+        getter:
+          q: "CURRent?"
+          r: "{:+.2E}"
+        setter:
+          q: "CURRent {:.2f}"
+        specs:
+          min: 0.01
+          max: 6.01
+          type: float
+      measured_current:
+        default: 0.11
+        getter:
+          q: "MEASure:CURRent?"
+          r: "{:+.2E}"
+        setter:
+          q: "MEASure:CURRent! {:.2f}"
+        specs:
+          min: 0.01
+          max: 6.01
+          type: float
+      measured_power:
+        default: 102.3
+        getter:
+          q: "MEASure:POWer?"
+          r: "{:+.8E}"
+        specs:
+          min: 0.0
+          max: 120.0
+          type: float
+      read_only:
+        default: 1
+        getter:
+          q: "INST?"
+          r: "{:s}"
+      output_enabled:
+        default: 0
+        getter:
+          q: "OUTP?"
+          r: "{:d}"
+        setter:
+          q: "OUTP {:d}"  
+resources:
+  ASRL1::INSTR:
+    device: device 1
+  USB::0x0699::0x0522::MOCK::INSTR:
+    device: device 1
+  TCPIP::localhost::INSTR:
+    device: device 1
+  TCPIP::localhost::10001::SOCKET:
+    device: device 1
+  GPIB::8::INSTR:
+    device: device 1
+  ASRL2::INSTR:
+    device: device 2
+  USB::0x0957::0x0000::MOCK::INSTR:
+    device: device 2
+  USB::0x2A8D::0x0201::MOCK::INSTR:
+    device: device 2
+  TCPIP::localhost:2222::INSTR:
+    device: device 2
+  GPIB::9::INSTR:
+    device: device 2
+  ASRL3::INSTR:
+    device: device 3
+  USB::0x0AAD::0x0001::MOCK::INSTR:
+    device: device 3
+  USB::0x0AAD::0x0197::MOCK::INSTR:
+    device: device 3
+  TCPIP::localhost:3333::INSTR:
+    device: device 3
+  GPIB::10::INSTR:
+    device: device 3
+  ASRL4::INSTR:
+    device: device 4
+  USB::0x0AAD::0x0002::MOCK::INSTR:
+    device: device 4
+  USB::0x0AAD::0x0135::MOCK::INSTR:
+    device: device 4
+  USB::0x0AAD::0x0135::MOCK0::INSTR:
+    device: device 6
+  USB::0x0AAD::0x0135::MOCK1::INSTR:
+    device: device 7
+  TCPIP::localhost:4444::INSTR:
+    device: device 4
+  GPIB::4::INSTR:
+    device: device 4
+  USB::0x21A9::0x1006::MOCK::INSTR:
+    device: device 5
+  
